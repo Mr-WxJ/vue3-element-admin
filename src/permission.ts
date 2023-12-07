@@ -10,7 +10,7 @@ NProgress.configure({ showSpinner: false }); // 进度条
 const permissionStore = usePermissionStoreHook();
 
 // 白名单路由
-const whiteList = ["/login"];
+const whiteList = ["/login", "/flower"];
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();

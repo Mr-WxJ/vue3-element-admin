@@ -77,4 +77,10 @@
   "i18n-ally.localesPaths": [
     "src/lang"
   ],
+  "[vue]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
 }

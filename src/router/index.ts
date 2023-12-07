@@ -21,6 +21,11 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: () => import("@/views/login/index.vue"),
     meta: { hidden: true },
   },
+  {
+    path: "/flower",
+    component: () => import("@/views/flower/index.vue"),
+    meta: { hidden: true },
+  },
 
   {
     path: "/",
