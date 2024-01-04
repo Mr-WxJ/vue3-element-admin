@@ -2,48 +2,53 @@ import { defineStore } from "pinia";
 import defaultSettings from "@/settings";
 
 export const useSettingsStore = defineStore("setting", () => {
-  // state
+  const title = defaultSettings.title;
+  const version = defaultSettings.version;
+
   const tagsView = useStorage<boolean>("tagsView", defaultSettings.tagsView);
 
   const showSettings = ref<boolean>(defaultSettings.showSettings);
   const sidebarLogo = ref<boolean>(defaultSettings.sidebarLogo);
-
   const fixedHeader = useStorage<boolean>(
     "fixedHeader",
     defaultSettings.fixedHeader
   );
-
   const layout = useStorage<string>("layout", defaultSettings.layout);
   const themeColor = useStorage<string>(
     "themeColor",
     defaultSettings.themeColor
   );
-  // actions
-  function changeSetting(param: { key: string; value: any }) {
-    const { key, value } = param;
-    switch (key) {
-      case "showSettings":
-        showSettings.value = value;
-        break;
-      case "fixedHeader":
-        fixedHeader.value = value;
-        break;
-      case "tagsView":
-        tagsView.value = value;
-        break;
-      case "sidevarLogo":
-        sidebarLogo.value = value;
-        break;
-      case "layout":
-        layout.value = value;
-        break;
-      case "themeColor":
-        themeColor.value = value;
-        break;
+  const theme = useStorage<string>("theme", defaultSettings.theme);
+
+  // Whether to enable watermark
+  const watermark = useStorage<any>("watermark", defaultSettings.watermark);
+
+  const settingsMap: Record<string, Ref<any>> = {
+    showSettings,
+    fixedHeader,
+    tagsView,
+    sidebarLogo,
+    layout,
+    themeColor,
+    theme,
+    watermark: watermark.value,
+  };
+
+  function changeSetting({ key, value }: { key: string; value: any }) {
+    const setting = settingsMap[key];
+    if (setting !== undefined) {
+      setting.value = value;
+      if (key === "theme" && value === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
   }
 
   return {
+    title,
+    version,
     showSettings,
     tagsView,
     fixedHeader,
@@ -51,5 +56,7 @@ export const useSettingsStore = defineStore("setting", () => {
     layout,
     themeColor,
     changeSetting,
+    theme,
+    watermark,
   };
 });

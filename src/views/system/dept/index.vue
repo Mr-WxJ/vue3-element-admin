@@ -20,7 +20,8 @@ const deptFormRef = ref(ElForm);
 
 const loading = ref(false);
 const ids = ref<number[]>([]);
-const dialog = reactive<DialogOption>({
+const dialog = reactive({
+  title: "",
   visible: false,
 });
 
@@ -195,7 +196,7 @@ onMounted(() => {
       </el-form>
     </div>
 
-    <el-card>
+    <el-card shadow="never" class="table-container">
       <template #header>
         <el-button
           v-hasPerm="['sys:dept:add']"

@@ -26,7 +26,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code, msg } = response.data;
-    if (code === "00000" || code === 200) {
+    if (code === "00000") {
       return response.data;
     }
     // 响应数据为二进制流处理(Excel导出)
@@ -46,8 +46,10 @@ service.interceptors.response.use(
           confirmButtonText: "确定",
           type: "warning",
         }).then(() => {
-          localStorage.clear();
-          window.location.href = "/";
+          const userStore = useUserStoreHook();
+          userStore.resetToken().then(() => {
+            location.reload();
+          });
         });
       } else {
         ElMessage.error(msg || "系统出错");

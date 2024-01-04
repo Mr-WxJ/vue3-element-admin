@@ -9,8 +9,6 @@
     <el-tooltip content="布局大小" effect="dark" placement="bottom">
       <size-select class="setting-item" />
     </el-tooltip>
-    <!--语言选择-->
-    <lang-select class="setting-item" />
   </div>
 
   <!-- 用户头像 -->
@@ -99,15 +97,14 @@ function logout() {
     cursor: pointer;
 
     &:hover {
-      background: var(--el-color-info-light-3);
+      background: var(--el-disabled-bg-color);
     }
   }
 }
 
 .avatar-container {
   display: flex;
-  align-items: center;
-  justify-items: center;
+  place-items: center center;
   margin: 0 5px;
   cursor: pointer;
 
