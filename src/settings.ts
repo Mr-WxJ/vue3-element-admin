@@ -1,6 +1,6 @@
 const defaultSettings: AppSettings = {
   title: "机器人后台",
-  version: "v2.8.0",
+  version: "v2.8.2",
   showSettings: true,
   tagsView: true,
   fixedHeader: false,

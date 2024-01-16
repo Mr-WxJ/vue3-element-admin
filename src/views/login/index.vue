@@ -14,19 +14,12 @@
       <lang-select class="ml-2 cursor-pointer" />
     </div>
     <!-- 登录表单 -->
-    <el-card
-      class="z-1 !border-none w-100 !bg-transparent !rounded-4% <sm:w-83"
-    >
+    <el-card class="z-1 !border-none w-100 !bg-transparent !rounded-4% <sm:w-83">
       <div class="text-center relative">
         <h2>{{ title }}</h2>
         <el-tag class="ml-2 absolute top-0 right-0">{{ version }}</el-tag>
       </div>
-      <el-form
-        ref="loginFormRef"
-        :model="loginData"
-        :rules="loginRules"
-        class="login-form"
-      >
+      <el-form ref="loginFormRef" :model="loginData" :rules="loginRules" class="login-form">
         <el-form-item prop="username">
           <div class="p-2">
             <svg-icon icon-class="user" />
@@ -41,11 +34,7 @@
           />
         </el-form-item>
 
-        <el-tooltip
-          :disabled="isCapslock === false"
-          content="Caps lock is On"
-          placement="right"
-        >
+        <el-tooltip :disabled="isCapslock === false" content="Caps lock is On" placement="right">
           <el-form-item prop="password">
             <span class="p-2">
               <svg-icon icon-class="password" />
@@ -61,10 +50,7 @@
               @keyup.enter="handleLogin"
             />
             <span class="mr-2" @click="passwordVisible = !passwordVisible">
-              <svg-icon
-                :icon-class="passwordVisible === false ? 'eye' : 'eye-open'"
-                class="cursor-pointer"
-              />
+              <svg-icon :icon-class="passwordVisible === false ? 'eye' : 'eye-open'" class="cursor-pointer" />
             </span>
           </el-form-item>
         </el-tooltip>
@@ -84,11 +70,7 @@
           />
 
           <div class="captcha">
-            <el-image
-              :src="captchaBase64"
-              @click="getCaptcha"
-              class="w-[120px] h-[48px] cursor-pointer"
-            >
+            <el-image :src="captchaBase64" @click="getCaptcha" class="w-[120px] h-[48px] cursor-pointer">
               <template #error>
                 <div class="image-slot">
                   <i-ep-picture />
@@ -98,11 +80,7 @@
           </div>
         </el-form-item>
 
-        <el-button
-          :loading="loading"
-          type="primary"
-          class="w-full"
-          @click.prevent="handleLogin"
+        <el-button :loading="loading" type="primary" class="w-full" @click.prevent="handleLogin"
           >{{ $t("login.login") }}
         </el-button>
 
@@ -115,12 +93,9 @@
     </el-card>
 
     <!-- ICP备案 -->
-    <div
-      class="absolute bottom-1 text-[10px] text-center"
-      v-show="useAppStore().device == 'desktop'"
-    >
-      <p>Copyright © 2023 tmuma.com All Rights Reserved. 木马版权所有</p>
-      <p>皖ICP备20006496号-3</p>
+    <div class="absolute bottom-1 text-[10px] text-center" v-show="useAppStore().device == 'desktop'">
+      Copyright © 2021 - 2024 tmuma.com All Rights Reserved. The木马
+      <p>鲁ICP备2023052121号-1</p>
     </div>
   </div>
 </template>
@@ -252,15 +227,12 @@ function handleLogin() {
 
           const redirect = (query.redirect as LocationQueryValue) ?? "/";
 
-          const otherQueryParams = Object.keys(query).reduce(
-            (acc: any, cur: string) => {
-              if (cur !== "redirect") {
-                acc[cur] = query[cur];
-              }
-              return acc;
-            },
-            {}
-          );
+          const otherQueryParams = Object.keys(query).reduce((acc: any, cur: string) => {
+            if (cur !== "redirect") {
+              acc[cur] = query[cur];
+            }
+            return acc;
+          }, {});
 
           router.push({ path: redirect, query: otherQueryParams });
         })
