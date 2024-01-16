@@ -21,7 +21,7 @@ for (let i = 0; i < count; i++) {
 
 export default [
   {
-    url: "/api/v1/article/list",
+    url: "/api/article/list",
     timeout: 200,
     method: "get",
     response: ({ query }) => {
@@ -49,7 +49,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/article/detail",
+    url: "/api/article/detail",
     timeout: 200,
     method: "get",
     response: ({ query }) => {
@@ -66,7 +66,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/article/pv",
+    url: "/api/article/pv",
     timeout: 200,
     method: "get",
     response: ({ query }) => {
@@ -91,7 +91,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/article/update",
+    url: "/api/article/update",
     timeout: 200,
     method: "post",
     response: ({ body }) => {
@@ -118,7 +118,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/article/create",
+    url: "/api/article/create",
     timeout: 200,
     method: "post",
     response: ({ body }) => {
@@ -152,7 +152,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/article/delete",
+    url: "/api/article/delete",
     timeout: 200,
     method: "post",
     response: ({ body }) => {

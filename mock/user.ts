@@ -12,7 +12,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/auth/captcha",
+    url: "/api/auth/captcha",
     method: "get",
     response: () => {
       return {
@@ -27,7 +27,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/auth/login",
+    url: "/api/auth/login",
     method: "post",
     response: () => {
       return {
@@ -44,7 +44,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/users/me",
+    url: "/api/users/me",
     method: "get",
     response: () => {
       return {
@@ -82,7 +82,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/auth/logout",
+    url: "/api/auth/logout",
     method: "delete",
     response: () => {
       return {
@@ -93,7 +93,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/users/page",
+    url: "/api/users/page",
     method: "get",
     response: () => {
       return {
@@ -137,7 +137,7 @@ export default [
   },
 
   {
-    url: "/api/v1/users/:id/form",
+    url: "/api/users/:id/form",
     method: "get",
     response: ({ url }) => {
       const id = url.match(/\/api\/v1\/users\/(\d+)\/form/)[1];

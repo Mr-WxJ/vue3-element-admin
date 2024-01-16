@@ -2,7 +2,7 @@ import { MockMethod } from "vite-plugin-mock";
 
 export default [
   {
-    url: "/api/v1/roles/options",
+    url: "/api/roles/options",
     method: "get",
     response: () => {
       return {
@@ -58,7 +58,7 @@ export default [
     },
   },
   {
-    url: "/api/v1/roles/page",
+    url: "/api/roles/page",
     method: "get",
     response: () => {
       return {

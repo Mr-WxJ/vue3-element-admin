@@ -2,7 +2,7 @@ import { MockMethod } from "vite-plugin-mock";
 
 export default [
   {
-    url: "/api/v1/dict/:code/options",
+    url: "/api/dict/:code/options",
     method: "get",
     response: ({ url }) => {
       const typeCode = url.match(/\/api\/v1\/dict\/(\w+)\/options/)[1];

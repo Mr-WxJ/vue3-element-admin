@@ -1,0 +1,125 @@
+.app-container2 {
+  padding: 5px 10px 20px 10px;
+  // 上填充,右填充,下填充,左填充
+}
+
+.filter-container {
+  padding-bottom: 10px;
+
+  .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+  }
+}
+
+.tool-head {
+  padding-bottom: 10px;
+  background-color: #00ff00;
+  padding: 20px 10px 20px 10px;
+  margin-bottom: 15px;
+}
+.el-header {
+  /* 设置行间的距离(行高) */
+  line-height: 50px;
+  color: rgb(250, 248, 248);
+  /* 字体大小 */
+  font-size: 20px;
+}
+
+.middle-body-background {
+  padding: 20px 10px 10px 10px;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+.tool-right {
+  float: right;
+  margin-right: 10px;
+  height: 100%;
+}
+
+/* 商品信息--第一格 */
+.order-goodsInfo {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.order-itemImg {
+  float: left;
+  width: 80px;
+  min-width: 80px;
+  height: 80px;
+}
+.order-info {
+  float: right;
+  width: 85%;
+  min-width: 380px;
+  height: 100%;
+}
+.order-info-name {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 13px;
+  color: rgb(0, 0, 0);
+}
+.order-info-left {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 11px;
+  color: rgb(128, 128, 128);
+}
+.order-info-money {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 11px;
+  color: rgb(128, 128, 128);
+}
+.paid-money {
+  font-size: 13px;
+  font-weight: bold !important;
+  color: #ea0000;
+}
+.order-time {
+  float: right;
+  color: #000000;
+}
+.order-time-delete {
+  float: right;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ff7000;
+}
+
+/* 佣金比例 */
+.rate-info {
+  text-align: left;
+  font-size: 11px;
+  /* color: rgb(128, 128, 128); */
+  color: #a3a3a3;
+}
+.rate-info-data {
+  font-size: 11px;
+  color: rgb(60, 60, 60);
+}
+.rate-info-final {
+  text-align: left;
+  font-size: 12px;
+  color: rgb(50, 50, 50);
+}
+.rate-info-final-fee {
+  font-weight: bold;
+  font-size: 13px;
+  color: #ff7000;
+}
+.pid-name {
+  font-weight: bold !important;
+  font-size: 12px;
+}
+
+.el-tooltip__popper {
+  max-width: 400px !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}

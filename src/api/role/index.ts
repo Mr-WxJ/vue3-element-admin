@@ -7,11 +7,9 @@ import { RoleQuery, RolePageResult, RoleForm } from "./types";
  *
  * @param queryParams
  */
-export function getRolePage(
-  queryParams?: RoleQuery
-): AxiosPromise<RolePageResult> {
+export function getRolePage(queryParams?: RoleQuery): AxiosPromise<RolePageResult> {
   return request({
-    url: "/api/v1/roles/page",
+    url: "/api/roles/page",
     method: "get",
     params: queryParams,
   });
@@ -22,11 +20,9 @@ export function getRolePage(
  *
  * @param queryParams
  */
-export function getRoleOptions(
-  queryParams?: RoleQuery
-): AxiosPromise<OptionType[]> {
+export function getRoleOptions(queryParams?: RoleQuery): AxiosPromise<OptionType[]> {
   return request({
-    url: "/api/v1/roles/options",
+    url: "/api/roles/options",
     method: "get",
     params: queryParams,
   });
@@ -39,7 +35,7 @@ export function getRoleOptions(
  */
 export function getRoleMenuIds(roleId: number): AxiosPromise<number[]> {
   return request({
-    url: "/api/v1/roles/" + roleId + "/menuIds",
+    url: "/api/roles/" + roleId + "/menuIds",
     method: "get",
   });
 }
@@ -49,12 +45,9 @@ export function getRoleMenuIds(roleId: number): AxiosPromise<number[]> {
  *
  * @param queryParams
  */
-export function updateRoleMenus(
-  roleId: number,
-  data: number[]
-): AxiosPromise<any> {
+export function updateRoleMenus(roleId: number, data: number[]): AxiosPromise<any> {
   return request({
-    url: "/api/v1/roles/" + roleId + "/menus",
+    url: "/api/roles/" + roleId + "/menus",
     method: "put",
     data: data,
   });
@@ -67,7 +60,7 @@ export function updateRoleMenus(
  */
 export function getRoleForm(id: number): AxiosPromise<RoleForm> {
   return request({
-    url: "/api/v1/roles/" + id + "/form",
+    url: "/api/roles/" + id + "/form",
     method: "get",
   });
 }
@@ -79,7 +72,7 @@ export function getRoleForm(id: number): AxiosPromise<RoleForm> {
  */
 export function addRole(data: RoleForm) {
   return request({
-    url: "/api/v1/roles",
+    url: "/api/roles",
     method: "post",
     data: data,
   });
@@ -93,7 +86,7 @@ export function addRole(data: RoleForm) {
  */
 export function updateRole(id: number, data: RoleForm) {
   return request({
-    url: "/api/v1/roles/" + id,
+    url: "/api/roles/" + id,
     method: "put",
     data: data,
   });
@@ -106,7 +99,7 @@ export function updateRole(id: number, data: RoleForm) {
  */
 export function deleteRoles(ids: string) {
   return request({
-    url: "/api/v1/roles/" + ids,
+    url: "/api/roles/" + ids,
     method: "delete",
   });
 }

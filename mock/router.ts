@@ -1,5 +1,5 @@
 import { MockMethod } from "vite-plugin-mock";
-const url = "/api/v1/menus/routes";
+const url = "/api/menus/routes";
 const method = "get";
 const data = {
   code: "00000",

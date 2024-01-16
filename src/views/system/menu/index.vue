@@ -6,14 +6,7 @@ defineOptions({
 });
 
 import { MenuQuery, MenuForm, MenuVO } from "@/api/menu/types";
-import {
-  listMenus,
-  getMenuForm,
-  getMenuOptions,
-  addMenu,
-  deleteMenu,
-  updateMenu,
-} from "@/api/menu";
+import { listMenus, getMenuForm, getMenuOptions, addMenu, deleteMenu, updateMenu } from "@/api/menu";
 
 import { MenuTypeEnum } from "@/enums/MenuTypeEnum";
 
@@ -200,12 +193,7 @@ onMounted(() => {
     <div class="search-container">
       <el-form ref="queryFormRef" :model="queryParams" :inline="true">
         <el-form-item label="关键字" prop="keywords">
-          <el-input
-            v-model="queryParams.keywords"
-            placeholder="菜单名称"
-            clearable
-            @keyup.enter="handleQuery"
-          />
+          <el-input v-model="queryParams.keywords" placeholder="菜单名称" clearable @keyup.enter="handleQuery" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleQuery"
@@ -221,11 +209,7 @@ onMounted(() => {
 
     <el-card shadow="never" class="table-container">
       <template #header>
-        <el-button
-          v-hasPerm="['sys:menu:add']"
-          type="success"
-          @click="openDialog(0)"
-        >
+        <el-button v-hasPerm="['sys:menu:add']" type="success" @click="openDialog(0)">
           <template #icon><i-ep-plus /></template>
           新增</el-button
         >
@@ -252,43 +236,18 @@ onMounted(() => {
 
         <el-table-column label="类型" align="center" width="80">
           <template #default="scope">
-            <el-tag
-              v-if="scope.row.type === MenuTypeEnum.CATALOG"
-              type="warning"
-              >目录</el-tag
-            >
-            <el-tag v-if="scope.row.type === MenuTypeEnum.MENU" type="success"
-              >菜单</el-tag
-            >
-            <el-tag v-if="scope.row.type === MenuTypeEnum.BUTTON" type="danger"
-              >按钮</el-tag
-            >
-            <el-tag v-if="scope.row.type === MenuTypeEnum.EXTLINK" type="info"
-              >外链</el-tag
-            >
+            <el-tag v-if="scope.row.type === MenuTypeEnum.CATALOG" type="warning">目录</el-tag>
+            <el-tag v-if="scope.row.type === MenuTypeEnum.MENU" type="success">菜单</el-tag>
+            <el-tag v-if="scope.row.type === MenuTypeEnum.BUTTON" type="danger">按钮</el-tag>
+            <el-tag v-if="scope.row.type === MenuTypeEnum.EXTLINK" type="info">外链</el-tag>
           </template>
         </el-table-column>
 
-        <el-table-column
-          label="路由路径"
-          align="left"
-          width="150"
-          prop="path"
-        />
+        <el-table-column label="路由路径" align="left" width="150" prop="path" />
 
-        <el-table-column
-          label="组件路径"
-          align="left"
-          width="250"
-          prop="component"
-        />
+        <el-table-column label="组件路径" align="left" width="250" prop="component" />
 
-        <el-table-column
-          label="权限标识"
-          align="center"
-          width="200"
-          prop="perm"
-        />
+        <el-table-column label="权限标识" align="center" width="200" prop="perm" />
 
         <el-table-column label="状态" align="center" width="80">
           <template #default="scope">
@@ -344,12 +303,7 @@ onMounted(() => {
       @close="closeDialog"
       top="5vh"
     >
-      <el-form
-        ref="menuFormRef"
-        :model="formData"
-        :rules="rules"
-        label-width="160px"
-      >
+      <el-form ref="menuFormRef" :model="formData" :rules="rules" label-width="160px">
         <el-form-item label="父级菜单" prop="parentId">
           <el-tree-select
             v-model="formData.parentId"
@@ -374,72 +328,41 @@ onMounted(() => {
           </el-radio-group>
         </el-form-item>
 
-        <el-form-item
-          v-if="formData.type == 'EXTLINK'"
-          label="外链地址"
-          prop="path"
-        >
+        <el-form-item v-if="formData.type == 'EXTLINK'" label="外链地址" prop="path">
           <el-input v-model="formData.path" placeholder="请输入外链完整路径" />
         </el-form-item>
 
         <el-form-item
-          v-if="
-            formData.type == MenuTypeEnum.CATALOG ||
-            formData.type == MenuTypeEnum.MENU
-          "
+          v-if="formData.type == MenuTypeEnum.CATALOG || formData.type == MenuTypeEnum.MENU"
           label="路由路径"
           prop="path"
         >
-          <el-input
-            v-if="formData.type == MenuTypeEnum.CATALOG"
-            v-model="formData.path"
-            placeholder="system"
-          />
+          <el-input v-if="formData.type == MenuTypeEnum.CATALOG" v-model="formData.path" placeholder="system" />
           <el-input v-else v-model="formData.path" placeholder="user" />
         </el-form-item>
 
         <!-- 组件页面完整路径 -->
-        <el-form-item
-          v-if="formData.type == MenuTypeEnum.MENU"
-          label="页面路径"
-          prop="component"
-        >
-          <el-input
-            v-model="formData.component"
-            placeholder="system/user/index"
-            style="width: 95%"
-          >
-            <template v-if="formData.type == MenuTypeEnum.MENU" #prepend
-              >src/views/</template
-            >
-            <template v-if="formData.type == MenuTypeEnum.MENU" #append
-              >.vue</template
-            >
+        <el-form-item v-if="formData.type == MenuTypeEnum.MENU" label="页面路径" prop="component">
+          <el-input v-model="formData.component" placeholder="system/user/index" style="width: 95%">
+            <template v-if="formData.type == MenuTypeEnum.MENU" #prepend>src/views/</template>
+            <template v-if="formData.type == MenuTypeEnum.MENU" #append>.vue</template>
           </el-input>
         </el-form-item>
 
-        <el-form-item
-          v-if="formData.type !== MenuTypeEnum.BUTTON"
-          prop="visible"
-          label="显示状态"
-        >
+        <el-form-item v-if="formData.type !== MenuTypeEnum.BUTTON" prop="visible" label="显示状态">
           <el-radio-group v-model="formData.visible">
             <el-radio :label="1">显示</el-radio>
             <el-radio :label="0">隐藏</el-radio>
           </el-radio-group>
         </el-form-item>
 
-        <el-form-item
-          v-if="formData.type === MenuTypeEnum.CATALOG"
-          label="根目录始终显示"
-        >
+        <el-form-item v-if="formData.type === MenuTypeEnum.CATALOG" label="根目录始终显示">
           <template #label>
             <div>
               根目录始终显示
               <el-tooltip placement="bottom" effect="light">
                 <template #content
-                  >是：根目录只有一个子路由显示目录
-                  <br />否：根目录只有一个子路由不显示目录，只显示子路由
+                  >是：根目录只有一个子路由显示目录 <br />否：根目录只有一个子路由不显示目录，只显示子路由
                 </template>
                 <i-ep-QuestionFilled class="inline-block" />
               </el-tooltip>
@@ -452,10 +375,7 @@ onMounted(() => {
           </el-radio-group>
         </el-form-item>
 
-        <el-form-item
-          v-if="formData.type === MenuTypeEnum.MENU"
-          label="是否缓存"
-        >
+        <el-form-item v-if="formData.type === MenuTypeEnum.MENU" label="是否缓存">
           <el-radio-group v-model="formData.keepAlive">
             <el-radio :label="1">是</el-radio>
             <el-radio :label="0">否</el-radio>
@@ -463,36 +383,20 @@ onMounted(() => {
         </el-form-item>
 
         <el-form-item label="排序" prop="sort">
-          <el-input-number
-            v-model="formData.sort"
-            style="width: 100px"
-            controls-position="right"
-            :min="0"
-          />
+          <el-input-number v-model="formData.sort" style="width: 100px" controls-position="right" :min="0" />
         </el-form-item>
 
         <!-- 权限标识 -->
-        <el-form-item
-          v-if="formData.type == MenuTypeEnum.BUTTON"
-          label="权限标识"
-          prop="perm"
-        >
+        <el-form-item v-if="formData.type == MenuTypeEnum.BUTTON" label="权限标识" prop="perm">
           <el-input v-model="formData.perm" placeholder="sys:user:add" />
         </el-form-item>
 
-        <el-form-item
-          v-if="formData.type !== MenuTypeEnum.BUTTON"
-          label="图标"
-          prop="icon"
-        >
+        <el-form-item v-if="formData.type !== MenuTypeEnum.BUTTON" label="图标" prop="icon">
           <!-- 图标选择器 -->
           <icon-select v-model="formData.icon" />
         </el-form-item>
 
-        <el-form-item
-          v-if="formData.type == MenuTypeEnum.CATALOG"
-          label="跳转路由"
-        >
+        <el-form-item v-if="formData.type == MenuTypeEnum.CATALOG" label="跳转路由">
           <el-input v-model="formData.redirect" placeholder="跳转路由" />
         </el-form-item>
       </el-form>

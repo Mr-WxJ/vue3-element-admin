@@ -36,9 +36,7 @@ function loadIcons() {
  */
 function handleFilter() {
   if (filterValue.value) {
-    filterIconNames.value = allIconNames.filter((iconName) =>
-      iconName.includes(filterValue.value)
-    );
+    filterIconNames.value = allIconNames.filter((iconName) => iconName.includes(filterValue.value));
   } else {
     filterIconNames.value = allIconNames;
   }
@@ -66,24 +64,13 @@ onMounted(() => {
 
 <template>
   <div ref="iconSelectorRef" class="iconselect-container">
-    <el-input
-      v-model="inputValue"
-      readonly
-      placeholder="点击选择图标"
-      @click="visible = !visible"
-    >
+    <el-input v-model="inputValue" readonly placeholder="点击选择图标" @click="visible = !visible">
       <template #prepend>
         <svg-icon :icon-class="inputValue" />
       </template>
     </el-input>
 
-    <el-popover
-      shadow="none"
-      :visible="visible"
-      placement="bottom-end"
-      trigger="click"
-      width="400"
-    >
+    <el-popover shadow="none" :visible="visible" placement="bottom-end" trigger="click" width="400">
       <template #reference>
         <div
           class="cursor-pointer text-[#999] absolute right-[10px] top-0 height-[32px] leading-[32px]"
@@ -96,13 +83,7 @@ onMounted(() => {
 
       <!-- 下拉选择弹窗 -->
       <div ref="iconSelectorDialogRef">
-        <el-input
-          v-model="filterValue"
-          class="p-2"
-          placeholder="搜索图标"
-          clearable
-          @input="handleFilter"
-        />
+        <el-input v-model="filterValue" class="p-2" placeholder="搜索图标" clearable @input="handleFilter" />
         <el-divider border-style="dashed" />
 
         <el-scrollbar height="300px">
@@ -114,10 +95,7 @@ onMounted(() => {
               @click="handleSelect(iconName)"
             >
               <el-tooltip :content="iconName" placement="bottom" effect="light">
-                <svg-icon
-                  color="var(--el-text-color-regular)"
-                  :icon-class="iconName"
-                />
+                <svg-icon color="var(--el-text-color-regular)" :icon-class="iconName" />
               </el-tooltip>
             </li>
           </ul>

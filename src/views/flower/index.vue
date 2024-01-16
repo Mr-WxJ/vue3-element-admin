@@ -111,17 +111,9 @@ onMounted(() => {
   <div class="my-container">
     <el-row :gutter="16">
       <el-col v-for="item in studentList" :key="item" :span="2">
-        <div
-          class="card"
-          :body-style="{ padding: '0px' }"
-          @click="GrowFlower(item)"
-        >
+        <div class="card" :body-style="{ padding: '0px' }" @click="GrowFlower(item)">
           <div class="flower">
-            <el-image
-              class="image-flower"
-              :src="url_flower"
-              :class="{ hidden: item.flower !== 1 }"
-            />
+            <el-image class="image-flower" :src="url_flower" :class="{ hidden: item.flower !== 1 }" />
           </div>
           <div class="flowerpot">
             <el-image class="image-flowerpot" :src="url_flowerpot" />

@@ -183,9 +183,7 @@ function openMenuDialog(row: RolePageVO) {
         .then(({ data }) => {
           const checkedMenuIds = data;
           console.log("勾选权限", checkedMenuIds);
-          checkedMenuIds.forEach((menuId) =>
-            menuRef.value.setChecked(menuId, true, false)
-          );
+          checkedMenuIds.forEach((menuId) => menuRef.value.setChecked(menuId, true, false));
         })
         .finally(() => {
           loading.value = false;
@@ -198,9 +196,7 @@ function openMenuDialog(row: RolePageVO) {
 function handleRoleMenuSubmit() {
   const roleId = checkedRole.id;
   if (roleId) {
-    const checkedMenuIds: number[] = menuRef.value
-      .getCheckedNodes(false, true)
-      .map((node: any) => node.value);
+    const checkedMenuIds: number[] = menuRef.value.getCheckedNodes(false, true).map((node: any) => node.value);
 
     loading.value = true;
     updateRoleMenus(roleId, checkedMenuIds)
@@ -225,18 +221,11 @@ onMounted(() => {
     <div class="search-container">
       <el-form ref="queryFormRef" :model="queryParams" :inline="true">
         <el-form-item prop="keywords" label="关键字">
-          <el-input
-            v-model="queryParams.keywords"
-            placeholder="角色名称"
-            clearable
-            @keyup.enter="handleQuery"
-          />
+          <el-input v-model="queryParams.keywords" placeholder="角色名称" clearable @keyup.enter="handleQuery" />
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="handleQuery"
-            ><i-ep-search />搜索</el-button
-          >
+          <el-button type="primary" @click="handleQuery"><i-ep-search />搜索</el-button>
           <el-button @click="resetQuery"><i-ep-refresh />重置</el-button>
         </el-form-item>
       </el-form>
@@ -244,15 +233,8 @@ onMounted(() => {
 
     <el-card shadow="never" class="table-container">
       <template #header>
-        <el-button type="success" @click="openDialog()"
-          ><i-ep-plus />新增</el-button
-        >
-        <el-button
-          type="danger"
-          :disabled="ids.length === 0"
-          @click="handleDelete()"
-          ><i-ep-delete />删除</el-button
-        >
+        <el-button type="success" @click="openDialog()"><i-ep-plus />新增</el-button>
+        <el-button type="danger" :disabled="ids.length === 0" @click="handleDelete()"><i-ep-delete />删除</el-button>
       </template>
 
       <el-table
@@ -278,28 +260,13 @@ onMounted(() => {
 
         <el-table-column fixed="right" label="操作" width="220">
           <template #default="scope">
-            <el-button
-              type="primary"
-              size="small"
-              link
-              @click="openMenuDialog(scope.row)"
-            >
+            <el-button type="primary" size="small" link @click="openMenuDialog(scope.row)">
               <i-ep-position />分配权限
             </el-button>
-            <el-button
-              type="primary"
-              size="small"
-              link
-              @click="openDialog(scope.row.id)"
-            >
+            <el-button type="primary" size="small" link @click="openDialog(scope.row.id)">
               <i-ep-edit />编辑
             </el-button>
-            <el-button
-              type="primary"
-              size="small"
-              link
-              @click="handleDelete(scope.row.id)"
-            >
+            <el-button type="primary" size="small" link @click="handleDelete(scope.row.id)">
               <i-ep-delete />删除
             </el-button>
           </template>
@@ -316,18 +283,8 @@ onMounted(() => {
     </el-card>
 
     <!-- 角色表单弹窗 -->
-    <el-dialog
-      v-model="dialog.visible"
-      :title="dialog.title"
-      width="500px"
-      @close="closeDialog"
-    >
-      <el-form
-        ref="roleFormRef"
-        :model="formData"
-        :rules="rules"
-        label-width="100px"
-      >
+    <el-dialog v-model="dialog.visible" :title="dialog.title" width="500px" @close="closeDialog">
+      <el-form ref="roleFormRef" :model="formData" :rules="rules" label-width="100px">
         <el-form-item label="角色名称" prop="name">
           <el-input v-model="formData.name" placeholder="请输入角色名称" />
         </el-form-item>
@@ -353,12 +310,7 @@ onMounted(() => {
         </el-form-item>
 
         <el-form-item label="排序" prop="sort">
-          <el-input-number
-            v-model="formData.sort"
-            controls-position="right"
-            :min="0"
-            style="width: 100px"
-          />
+          <el-input-number v-model="formData.sort" controls-position="right" :min="0" style="width: 100px" />
         </el-form-item>
       </el-form>
 
@@ -371,11 +323,7 @@ onMounted(() => {
     </el-dialog>
 
     <!-- 分配菜单弹窗  -->
-    <el-dialog
-      v-model="menuDialogVisible"
-      :title="'【' + checkedRole.name + '】权限分配'"
-      width="800px"
-    >
+    <el-dialog v-model="menuDialogVisible" :title="'【' + checkedRole.name + '】权限分配'" width="800px">
       <el-scrollbar v-loading="loading" max-height="600px">
         <el-tree
           ref="menuRef"
@@ -383,6 +331,7 @@ onMounted(() => {
           show-checkbox
           :data="menuList"
           :default-expand-all="true"
+          check-strictly="true"
         >
           <template #default="{ data }">
             {{ data.label }}
@@ -392,9 +341,7 @@ onMounted(() => {
 
       <template #footer>
         <div class="dialog-footer">
-          <el-button type="primary" @click="handleRoleMenuSubmit"
-            >确 定</el-button
-          >
+          <el-button type="primary" @click="handleRoleMenuSubmit">确 定</el-button>
           <el-button @click="menuDialogVisible = false">取 消</el-button>
         </div>
       </template>

@@ -1,5 +1,5 @@
 const defaultSettings: AppSettings = {
-  title: "vue3-element-admin",
+  title: "机器人后台",
   version: "v2.8.0",
   showSettings: true,
   tagsView: true,
@@ -10,7 +10,7 @@ const defaultSettings: AppSettings = {
   size: "default",
   language: "zh-cn",
   themeColor: "#409EFF",
-  watermark: { enabled: false, content: "有来技术" },
+  watermark: { enabled: false, content: "木马" },
 };
 
 export default defaultSettings;

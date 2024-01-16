@@ -16,7 +16,6 @@ export interface UserInfo {
 export interface UserQuery extends PageQuery {
   keywords?: string;
   status?: number;
-  deptId?: number;
   startTime?: string;
   endTime?: string;
 }
@@ -34,17 +33,13 @@ export interface UserPageVO {
    */
   createTime?: Date;
   /**
-   * 部门名称
-   */
-  deptName?: string;
-  /**
    * 用户邮箱
    */
   email?: string;
   /**
    * 性别
    */
-  genderLabel?: string;
+  gender?: string;
   /**
    * 用户ID
    */
@@ -79,10 +74,6 @@ export interface UserForm {
    * 用户头像
    */
   avatar?: string;
-  /**
-   * 部门ID
-   */
-  deptId?: number;
   /**
    * 邮箱
    */

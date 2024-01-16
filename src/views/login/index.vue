@@ -119,10 +119,7 @@
       class="absolute bottom-1 text-[10px] text-center"
       v-show="useAppStore().device == 'desktop'"
     >
-      <p>
-        Copyright © 2021 - 2023 youlai.tech All Rights Reserved. 有来技术
-        版权所有
-      </p>
+      <p>Copyright © 2023 tmuma.com All Rights Reserved. 木马版权所有</p>
       <p>皖ICP备20006496号-3</p>
     </div>
   </div>
